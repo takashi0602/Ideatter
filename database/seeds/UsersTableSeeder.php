@@ -30,7 +30,9 @@ class UsersTableSeeder extends Seeder
           DB::table('users')->insert([
             'name' => $name[$i],
             'email' => $email[$i],
-            'password' => bcrypt($password[$i])
+            'password' => bcrypt($password[$i]),
+            'created_at' => time(),
+            'updated_at' => time()
           ]);
         }
 

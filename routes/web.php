@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// タイムライン
-Route::get('/timeline', function () {
-  return view('timeline');
-});
-
 // ユーザー
 Route::get('/user', function () {
   return view('user');
@@ -38,6 +33,10 @@ Route::get('/header', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/timeline', 'TweetsController@index');
+
+Route::post('/timeline/reply', 'TweetsController@reply');
 
 Route::get('/tweet', 'TweetsController@tweet');
 

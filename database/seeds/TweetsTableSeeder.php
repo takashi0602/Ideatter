@@ -30,7 +30,9 @@ class TweetsTableSeeder extends Seeder
           DB::table('tweets')->insert([
             'user_id' => $user_id[$i],
             'title' => $title[$i],
-            'description' => $description[$i]
+            'description' => $description[$i],
+            'created_at' => time(),
+            'updated_at' => time()
           ]);
         }
 
