@@ -15,14 +15,7 @@
   </head>
 
   <body>
-  <!-- todo やる気があれば通知欄のページリンクを作成 
-    <div class = "header"; style = "height: 80px; padding: 20px 0px 0px 50px; font-size: 60px;  display: inline; list-style-type: none;">
-        <div style = "float: left;">
-            <li>ホーム</li>
-          <li><a href="http://192.168.10.10/mention">通知</a></li>
-        </div>
-    </div>
-    -->
+
     <ul class="nav">
          <li class="nav-item">
             <a class="nav-link active" href="#" style ="font-size: 60px">
@@ -41,6 +34,15 @@
         <li>
             <a class="nav-link" href="#"style ="font-size: 60px">
             <i class="far fa-envelope"></i>Messages</a>
+        </li>
+        <li>
+            <div class= "ber" style = "font-size: 60px;">|</div>
+        </li>
+        <li>
+            <a class="nav-link" href="#"style ="font-size: 60px">
+            <i class="fas fa-search"></i>
+            <input class="kensaku" type="search" name="search" style ="font-size: 30px; mergin: 0 0 0 10;"placeholder="タグ検索">
+            <input class="botan" type="submit" style ="font-size: 30px; mergin: 0 0 0 10;"name="search" value="検索">
         </li>
         
     </ul>
