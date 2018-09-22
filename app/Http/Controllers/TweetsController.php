@@ -28,6 +28,7 @@ class TweetsController extends Controller
     return view('timeline', [
       'tweets' => $tweets,
       'replies' => $replies,
+      'replyreplies' => $replyreplies,
       'users' => $users,
       'user_count' => $user_count,
       'reply_count' => $reply_count
