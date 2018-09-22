@@ -1,6 +1,8 @@
 <div>
   @foreach($user as $u)
-    <img src="{{ $u->thumbnail }}">
-    <div class = "d-inline-block">{{ $u->name }}</div>
+    <div class="ml-5 text-center">
+      <img src="{{ $u->thumbnail }}" class="mb-3" style="border-radius: 50%">
+      <div class="" style="font-size: 20px">{{ $u->name }}</div>
+    </div>
   @endforeach
 </div>

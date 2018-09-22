@@ -10,44 +10,19 @@
 
   </head>
     <body>
-
-        <div class = "signbutton">
-            <button type="button" class="btn btn-secondary btn-lg" style= "float: right; width: 300px; height:150px;">
-                <div style = "font-size: 60px"> Sign Up</div>
-            </button>
-            <button type="button" class="btn btn-primary btn-lg" style= "float: right; width: 300px; height:150px;">
-                <div style = "font-size: 60px"> Sign In</div>
-            </button>
+      <div class="text-center" style="position: relative; top: 150px;">
+        <div class = "bigtitle" style ="font-size: 200px;">
+          Ideatter
+          <img src="{{ asset('images/froglogo.png') }}" style="width: 150px; border-radius: 50%;">
         </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class = "logo">
-            <div class = "bigtitle" style ="font-size: 336px; text-align: center;">
-                 Ideatter
-            </div>
-            <div class = "search" style = " text-align: center;">
-                <li>
-                    <input class="kensaku" type="search" name="search" style ="font-size: 60px; mergin: 0 0 0 10;"placeholder="タグ検索">
-                    <input class="botan" type="submit" style ="font-size: 60px; mergin: 0 0 0 10;"name="search" value="検索">
-                </li>
-            </div>
-            <div class = "frog" style = "float: right">
-                <img src="{{ asset('images/froglogo.png') }}" style="width: 500px; height: 500px;">
-            </div>
+        <div>
+          <a href="{{ url('/register') }}" class="btn btn-secondary btn-lg mr-5">
+            Sign Up
+          </a>
+          <a href="{{ url('/login') }}" class="btn btn-primary btn-lg">
+            Sign In
+          </a>
         </div>
-
-
-        
+      </div>
     </body>
 </html>

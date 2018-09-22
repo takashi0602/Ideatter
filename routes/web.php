@@ -30,6 +30,11 @@ Route::get('/mention', function(){
   return view('mention');
 });
 
+// タイムライン
+Route::get('/main', function(){
+  return view('main');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -39,6 +44,8 @@ Route::get('/timeline', 'TweetsController@index');
 Route::post('/timeline/reply', 'TweetsController@reply');
 
 Route::post('/timeline/replyreplies', 'TweetsController@replyreplies');
+
+Route::get('/timeline/search', 'TweetsController@search');
 
 Route::get('/tweet', 'TweetsController@tweet');
 

@@ -24,6 +24,8 @@ class TweetsController extends Controller
     $users = User::select('id', 'name', 'thumbnail')->get();
     $user_count = User::select('id')->count();
     $reply_count = Reply::select('id')->count();
+    $user = User::where('id', Auth::user()->id)->get();
+    $results = '';
 
     return view('timeline', [
       'tweets' => $tweets,
@@ -31,7 +33,9 @@ class TweetsController extends Controller
       'replyreplies' => $replyreplies,
       'users' => $users,
       'user_count' => $user_count,
-      'reply_count' => $reply_count
+      'reply_count' => $reply_count,
+      'user' => $user,
+      'results' => $results
     ]);
   }
 
@@ -71,5 +75,43 @@ class TweetsController extends Controller
     ]);
 
     return redirect('/timeline');
+  }
+
+  public function search(Request $request)
+  {
+    $tweets = Tweet::select('*')->orderBy('id', 'desc')->get();
+    $replies = Reply::select('*')->orderBy('id', 'desc')->get();
+    $replyreplies = ReplyReply::select('*')->orderBy('id')->get();
+    $users = User::select('id', 'name', 'thumbnail')->get();
+    $user_count = User::select('id')->count();
+    $reply_count = Reply::select('id')->count();
+    $user = User::where('id', Auth::user()->id)->get();
+
+    $search = $request->search_tag;
+
+//    dd($search);
+
+    $results = Tweet::select('*')->where('description', 'like', '%'.$search.'%')->get();
+
+//    dd($results);
+
+    if(!empty($results)) {
+
+      return view('timeline', [
+        'tweets' => $tweets,
+        'replies' => $replies,
+        'replyreplies' => $replyreplies,
+        'users' => $users,
+        'user_count' => $user_count,
+        'reply_count' => $reply_count,
+        'user' => $user,
+        'results' => $results
+      ]);
+
+    } else {
+      return redirect('/timeline');
+    }
+
+//    return redirect('/timeline');
   }
 }
