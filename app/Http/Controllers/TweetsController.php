@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Tweet;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 
 class TweetsController extends Controller
@@ -13,6 +16,10 @@ class TweetsController extends Controller
 
   public function index()
   {
-    return view('home');
+    $tweets = Tweet::all();
+
+    return view('timeline', [
+      'tweets' => $tweets
+    ]);
   }
 }
