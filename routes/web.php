@@ -12,22 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-// 投稿
-Route::get('/tweet', function () {
-  return view('tweet');
-});
-
-// タイムライン
-Route::get('/timeline', function () {
-  return view('timeline');
-});
-
-// ユーザー
-Route::get('/user', function () {
-  return view('user');
+    return view('top');
 });
 
 // 検索
@@ -48,3 +33,13 @@ Route::get('/mention', function(){
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/timeline', 'TweetsController@index');
+
+Route::post('/timeline/reply', 'TweetsController@reply');
+
+Route::get('/tweet', 'TweetsController@tweet');
+
+Route::post('/tweet/create', 'TweetsController@create');
+
+Route::get('/user', 'UsersController@index');

@@ -6,11 +6,15 @@
 
     </head>
     <body>
-      <label class="title">タイトル</label><br>       
-        <input class="waku" type="text" name="title" maxlength="30" value="" placeholder="30字以内で入力">
-  
-    <div><label class="title">内容</label></div>
-    <div><textarea class="waku"></textarea></div>
+      <form action="{{ url('tweet/create') }}" method="POST">
+        {{ csrf_field() }}
+        <label class="title">タイトル</label><br>
+        <input class="waku" type="text" name="tweet_title" maxlength="30" value="" placeholder="30字以内で入力">
+
+        <div><label class="title">内容</label></div>
+        <div><textarea class="waku" name="tweet_description"></textarea></div>
+        <button class="btn btn-primary" type="submit">Tweet</button>
+      </form>
 
     </body>
     <style>
@@ -21,7 +25,7 @@
     }
     .title{
      font-weight: bold;
-     font-size: 20;
+     font-size: 20px;
     }
     </style>
 </html>
