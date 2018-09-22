@@ -6,8 +6,6 @@
 
  </head>
  <body>
- <input class="kensaku" type="search" name="search" placeholder="タグ検索">
- <input class="botan" type="submit" name="search" value="検索">
  <br>
  <br>
  <p>＃C言語</p>
