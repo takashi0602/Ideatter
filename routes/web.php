@@ -38,6 +38,8 @@ Route::get('/timeline', 'TweetsController@index');
 
 Route::post('/timeline/reply', 'TweetsController@reply');
 
+Route::post('/timeline/replyreplies', 'TweetsController@replyreplies');
+
 Route::get('/tweet', 'TweetsController@tweet');
 
 Route::post('/tweet/create', 'TweetsController@create');

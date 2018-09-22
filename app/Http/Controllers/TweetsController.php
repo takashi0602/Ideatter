@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Tweet;
 use App\User;
 use App\Reply;
+use App\ReplyReply;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -19,6 +20,7 @@ class TweetsController extends Controller
   {
     $tweets = Tweet::select('*')->orderBy('id', 'desc')->get();
     $replies = Reply::select('*')->orderBy('id', 'desc')->get();
+    $replyreplies = ReplyReply::select('*')->orderBy('id')->get();
     $users = User::select('id', 'name', 'thumbnail')->get();
     $user_count = User::select('id')->count();
     $reply_count = Reply::select('id')->count();
@@ -52,8 +54,19 @@ class TweetsController extends Controller
   {
     Reply::create([
       'user_id' => Auth::user()->id,
-      'tweet_id' => $request->reply_id,
+      'tweet_id' => $request->tweet_id,
       'description' => $request->reply_description
+    ]);
+
+    return redirect('/timeline');
+  }
+
+  public function replyreplies(Request $request)
+  {
+    ReplyReply::create([
+      'user_id' => Auth::user()->id,
+      'reply_id' => $request->reply_id,
+      'description' => $request->replyreplies_description
     ]);
 
     return redirect('/timeline');

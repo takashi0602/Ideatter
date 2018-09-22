@@ -10,18 +10,19 @@
   </head>
   <body>
     <!-- 投稿ボタン -->
-    <a href="{{ url('/tweet') }}" class="btn btn-outline-secondary mb-3" style= "font-size: 40px;  padding: 0 100px;">投稿</a>
-    @foreach($tweets as $tweet)
-      <div class="mb-3 border">
-        <div class="timeline_user" >
-          @for($i = 0; $i < $user_count; $i++)
-            @if ($tweet->user_id == $users[$i]->id)
-              <img src="{{ $users[$i]->thumbnail }}" style="width: 50px; height: 50px; border-radius: 50%">
-              <div class="d-inline-block">{{ $users[$i]->name }}</div>
-            @endif
-          @endfor
-        </div>
-        <p style="word-wrap: break-word;"><a class="btn border-0 w-100 text-left d-block" style="background-color: #f8fafc; height: 100px;" data-toggle="modal" data-target="#exampleModalCenter_{{$tweet->id}}">{{ $tweet->title }}</a></p>
+    <div class="mx-4">
+      <a href="{{ url('/tweet') }}" class="btn btn-outline-secondary mb-3" style= "font-size: 40px;  padding: 0 100px;">投稿</a>
+      @foreach($tweets as $tweet)
+        <div class="mb-3">
+          <div class="timeline_user mb-1" >
+            @for($i = 0; $i < $user_count; $i++)
+              @if ($tweet->user_id == $users[$i]->id)
+                <img src="{{ $users[$i]->thumbnail }}" style="width: 50px; height: 50px; border-radius: 50%">
+                <div class="d-inline-block">{{ $users[$i]->name }}</div>
+              @endif
+            @endfor
+          </div>
+        <a class="btn w-100 text-left border d-block" style="background-color: #f8fafc; height: 100px;" data-toggle="modal" data-target="#exampleModalCenter_{{$tweet->id}}">{{ $tweet->title }}</a>
       </div>
         <!-- 展開する本体部 -->
       <div class="modal fade" id="exampleModalCenter_{{$tweet->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -44,19 +45,25 @@
                     {{ csrf_field() }}
                     <div>
                       <textarea class="form-control mb-2" name="reply_description" rows="5"></textarea>
-                      <input type="hidden" name="reply_id" value="{{ $tweet->id }}">
+                      <input type="hidden" name="tweet_id" value="{{ $tweet->id }}">
                     </div>
                     <button type="submit" class="btn btn-primary">返信</button>
                   </form>
                   {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>--}}
                 </div>
-                <!-- todo ここに返信先実装する -->
                 @for($i = 0; $i < $reply_count; $i++)
                   @if($tweet->id == $replies[$i]->tweet_id)
-                    <div class="modal-body">
-                      <img src="{{ $users[$replies[$i]->user_id - 1]->thumbnail }}" class="mb-3" style="width: 50px; height: 50px; border-radius: 50%">
-                      <div class="d-inline-block">{{ $users[$replies[$i]->user_id - 1]->name }}</div>
-                      <div class="border mx-4" style="height: 100px; overflow: scroll;">{{ $replies[$i]->description }}</div>
+                    <div class="modal-body mx-4">
+                        <img src="{{ $users[$replies[$i]->user_id - 1]->thumbnail }}" class="mb-3" style="width: 50px; height: 50px; border-radius: 50%">
+                        <div class="d-inline-block">{{ $users[$replies[$i]->user_id - 1]->name }}</div>
+                        <div class="border mb-3" style="height: 100px; overflow: scroll; ">{{ $replies[$i]->description }}</div>
+                      <form action="{{ url('timeline/replyreplies') }}" method="POST">
+                        {{ csrf_field() }}
+                        <textarea class="form-control mb-2" name="replyreplies_description"></textarea>
+                        <input type="hidden" name="reply_id" value="{{ $replies[$i]->id }}">
+                        <button type="submit" class="btn btn-primary">返信</button>
+                      </form>
+
                     </div>
                   @endif
                 @endfor
@@ -64,5 +71,6 @@
           </div>
         </div>
       @endforeach
+    </div>
   </body>
 </html>
