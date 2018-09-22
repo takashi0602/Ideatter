@@ -12,12 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-// ユーザー
-Route::get('/user', function () {
-  return view('user');
+    return view('top');
 });
 
 // 検索
@@ -41,3 +36,5 @@ Route::post('/timeline/reply', 'TweetsController@reply');
 Route::get('/tweet', 'TweetsController@tweet');
 
 Route::post('/tweet/create', 'TweetsController@create');
+
+Route::get('/user', 'UsersController@index');
