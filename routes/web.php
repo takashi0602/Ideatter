@@ -25,6 +25,11 @@ Route::get('/header', function () {
   return view('header');
 });
 
+//　通知
+Route::get('/mention', function(){
+  return view('mention');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
