@@ -17,9 +17,25 @@ class TweetsController extends Controller
   public function index()
   {
     $tweets = Tweet::all();
-
+    dd($tweets);
     return view('timeline', [
       'tweets' => $tweets
     ]);
+  }
+
+  public function tweet()
+  {
+    return view('tweet');
+  }
+
+  public function create(Request $request)
+  {
+    Tweet::create([
+      'user_id' => Auth::user()->id,
+      'title' => $request->tweet_title,
+      'description' => $request->tweet_description
+    ]);
+
+    return redirect('/timeline');
   }
 }

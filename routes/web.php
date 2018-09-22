@@ -15,11 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 投稿
-Route::get('/tweet', function () {
-  return view('tweet');
-});
-
 // タイムライン
 Route::get('/timeline', function () {
   return view('timeline');
@@ -44,4 +39,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/hoge', 'TweetsController@index');
+Route::get('/tweet', 'TweetsController@tweet');
+
+Route::post('/tweet/create', 'TweetsController@create');
